@@ -65,13 +65,15 @@ google.charts.setOnLoadCallback(drawChart1);
 function drawChart1() {
     var data = google.visualization.arrayToDataTable([
     ['Year', 'Numbers'],
-    ['2013',  1000],
-    ['2014',  1170],
-    ['2015',  660],
-    ['2016',  1030]
+    ['2012',  14],
+    ['2013',  13],
+    ['2014',  9],
+    ['2015',  11],
+    ['2016',  12]
         ]);
 
     var options = {
+    title: '近五年資料',
     hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
     vAxis: {minValue: 0}
     	};
@@ -85,14 +87,18 @@ function drawChart() {
 
 var data = google.visualization.arrayToDataTable([
     ['Country', 'Numbers'],
-    ['日本',     11],
-    ['美國',      2],
-    ['義大利',  2],
-    ['英國', 2],
-    ['中國',    7]
+    ['日本', 47],
+    ['韓國', 32],
+    ['印尼', 9],
+    ['中國', 7],
+    ['紐西蘭', 7],
+    ['美國', 5],
+    ['澳洲', 5],
+    ['其他', 18]
     ]);
 
 var options = {
+	title: '共130所姊妹校',
     pieHole: 0.6   
 };
 

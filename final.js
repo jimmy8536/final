@@ -59,6 +59,47 @@ $(document).ready(function(){
 	}
 });
 
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart1);
+
+function drawChart1() {
+    var data = google.visualization.arrayToDataTable([
+    ['Year', 'Numbers'],
+    ['2013',  1000],
+    ['2014',  1170],
+    ['2015',  660],
+    ['2016',  1030]
+        ]);
+
+    var options = {
+    hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+    vAxis: {minValue: 0}
+    	};
+
+    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+    	};
+
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+
+var data = google.visualization.arrayToDataTable([
+    ['Country', 'Numbers'],
+    ['日本',     11],
+    ['美國',      2],
+    ['義大利',  2],
+    ['英國', 2],
+    ['中國',    7]
+    ]);
+
+var options = {
+    pieHole: 0.6   
+};
+
+var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+chart.draw(data, options);
+};
+
 function draw(data) {
   d3.select('.barChart') //選擇放在barChart這個div容器裡面
   .selectAll('div') //選取".barChart"範圍內的所有的div
@@ -76,8 +117,8 @@ function draw(data) {
       return (d.count *15)  + 'px'
   });
 };
-
 //Mockup JSON，使用JSON Generator http://www.json-generator.com
 //資料載入完畢後會call "draw" 這個callback function
 d3.json('http://www.json-generator.com/api/json/get/bTGclonYia?indent=2', draw); //Mockup
+
 })

@@ -110,7 +110,7 @@ google.charts.setOnLoadCallback(drawChart2);
 function drawChart2() {
 
 var data = google.visualization.arrayToDataTable([
-    ["Element", "Density", { role: "style" } ],
+    ["school", "number", { role: "style" } ],
     ["國小", 23, "#3f51b5"],
     ["國中", 42, "#3f51b5"],
     ["高中", 38, "#3f51b5"],

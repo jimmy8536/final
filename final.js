@@ -106,25 +106,34 @@ var chart = new google.visualization.PieChart(document.getElementById('piechart'
 chart.draw(data, options);
 };
 
-function draw(data) {
-  d3.select('.barChart') //選擇放在barChart這個div容器裡面
-  .selectAll('div') //選取".barChart"範圍內的所有的div
-  .data(data) //將資料加入div
-  .enter() //傳入資料
-  .append('div') //放到畫面上
-  .attr('class','item clearfix') //將剛剛放到畫面上的div，加上class "item"
-  .text(function(d){return d.text}) //加上文字描述，使用json檔案裡面的 "text" 欄位
-  .append('div') //加入包含資料的div，這個div是用來畫圖用的
-  .text(function (data) {
-      return data.count; //畫圖用div加上文字描述，使用json檔案裡面的 "count" 欄位
-  })
-  .attr('class','bar') //畫圖用div加上class "bar"
-  .style('width', function(d){ //將剛剛對每個畫圖用div設定寬度，這裡將取出的count值乘以15，即為顯示在畫面上的px數
-      return (d.count *15)  + 'px'
-  });
-};
-//Mockup JSON，使用JSON Generator http://www.json-generator.com
-//資料載入完畢後會call "draw" 這個callback function
-d3.json('http://www.json-generator.com/api/json/get/bTGclonYia?indent=2', draw); //Mockup
+google.charts.setOnLoadCallback(drawChart2);
+function drawChart2() {
+
+var data = google.visualization.arrayToDataTable([
+    ["Element", "Density", { role: "style" } ],
+    ["國小", 23, "#3f51b5"],
+    ["國中", 42, "#3f51b5"],
+    ["高中", 38, "#3f51b5"],
+    ["高職", 27, "#3f51b5"]
+    ]);
+
+var view = new google.visualization.DataView(data);
+view.setColumns([0, 1,
+    { calc: "stringify",
+      sourceColumn: 1,
+      type: "string",
+      role: "annotation" },
+      2]);
+
+var options = {
+    width: 800,
+    height: 400,
+    bar: {groupWidth: "95%"},
+    legend: { position: "none" },
+    };
+var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+chart.draw(view, options);
+  }
+
 
 })
